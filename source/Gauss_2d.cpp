@@ -20,8 +20,8 @@ matrix setGaussPoints_2d(index gauss_k)
     matrix points_matrix(gauss_k*gauss_k,temp);
     vector<T> points = setGaussPoints(gauss_k);
     index k = 0;
-    for (index i = 0; i < 3; i++) {
-        for (index j = 0; j < 3; j++) {
+    for (index i = 0; i < gauss_k; i++) {
+        for (index j = 0; j < gauss_k; j++) {
             points_matrix[k][0] = points[i];
             points_matrix[k][1] = points[j];
             k++;
