@@ -3,7 +3,7 @@
 # MY_PROJECT: the project now
 set(MY_PROJECT MyGauss)
 # MY_VERSION: the project version now
-set(MY_VERSION 1.0)
+set(MY_VERSION 2.0)
 # MY_EXTRA_ROOT: the dir to find extra libs
 set(MY_EXTRA_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../Base)
 # the default subdir is source, you should add subdir at the end!
