@@ -1,8 +1,28 @@
 #include "Gauss.h"
 
+index gauss_2d_triangle_len(index gauss_k)
+{
+    index len = 1;
+    switch (gauss_k) {
+    case 1:
+        len = 1;
+        break;
+    case 2:
+        len = 3;
+        break;
+    case 3:
+        len = 4;
+        break;
+    default:
+        break;
+    }
+
+    return len;
+}
+
 vector<T> setGaussWeights_2d_triangle(index gauss_k)
 {
-    vector<T> weights;
+    vector<T> weights(gauss_2d_triangle_len(gauss_k));
     if (gauss_k == 1) {
         weights = {1.0 / 2};
     }
@@ -13,8 +33,8 @@ vector<T> setGaussWeights_2d_triangle(index gauss_k)
         weights = {-27.0 / 96, 25.0 / 96, 25.0 / 96, 25.0 / 96};
     }
     else {
-        fprintf(stderr, "setGaussWeights_2d_triangle: gauss_k don't know, reset gauss_k = 3\n");
-        weights = {-27.0 / 96, 25.0 / 96, 25.0 / 96, 25.0 / 96};
+        fprintf(stderr, "setGaussWeights_2d_triangle: gauss_k don't know\n");
+        return vector<double>(gauss_k);
     }
 
     return weights;
@@ -23,37 +43,24 @@ vector<T> setGaussWeights_2d_triangle(index gauss_k)
 matrix setGaussPoints_2d_triangle(index gauss_k)
 {
     vector<double> temp(2, 0);
+    matrix points(gauss_2d_triangle_len(gauss_k), temp);
     if (gauss_k == 1) {
-        matrix points(1, temp);
         points[0] = {1.0 / 3, 1.0 / 3};
-
-        return points;
     }
     else if (gauss_k == 2) {
-        matrix points(3, temp);
         points[0] = {1.0 / 2, 1.0 / 2};
         points[1] = {0, 1.0 / 2};
         points[2] = {1.0 / 2, 0};
-
-        return points;
     }
     else if (gauss_k == 3) {
-        matrix points(4, temp);
         points[0] = {1.0 / 3, 1.0 / 3};
         points[1] = {1.0 / 5, 1.0 / 5};
         points[2] = {3.0 / 5, 1.0 / 5};
         points[3] = {1.0 / 5, 3.0 / 5};
-
-        return points;
     }
     else {
-        fprintf(stderr, "setGaussPoints_2d_triangle: gauss_k don't know, reset gauss_k = 3\n");
-        matrix points(4, temp);
-        points[0] = {1.0 / 3, 1.0 / 3};
-        points[1] = {1.0 / 5, 1.0 / 5};
-        points[2] = {3.0 / 5, 1.0 / 5};
-        points[3] = {1.0 / 5, 3.0 / 5};
-
-        return points;
+        fprintf(stderr, "setGaussPoints_2d_triangle: gauss_k don't know\n");
     }
+
+    return points;
 }

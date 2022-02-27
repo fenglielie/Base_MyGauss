@@ -1,9 +1,17 @@
 #include "Gauss.h"
 
+index gauss_1d_len(index gauss_k)
+{
+    if (gauss_k > 0)
+        return gauss_k;
+    else
+        return 1;
+}
+
 // gauss points
 vector<T> setGaussPoints(index gauss_k)
 {
-    vector<T> points(gauss_k, 0);
+    vector<T> points(gauss_1d_len(gauss_k), 0);
     if (gauss_k == 1) {
         points[0] = 0;
     }
@@ -15,9 +23,6 @@ vector<T> setGaussPoints(index gauss_k)
         points[0] = -0.774596669241483377;
         points[1] = 0;
         points[2] = -points[0];
-    }
-    else if (gauss_k == 4) {
-        points[0] = 0;
     }
     else if (gauss_k == 5) {
         points[0] = -0.9061798459386640;
@@ -36,14 +41,7 @@ vector<T> setGaussPoints(index gauss_k)
         points[6] = -points[0];
     }
     else {
-        fprintf(stderr, "setGaussPoints: gauss_k don't know, reset gauss_k = 7\n");
-        points[0] = -0.9491079123427580;
-        points[1] = -0.7415311855993940;
-        points[2] = -0.4058451513773970;
-        points[3] = 0;
-        points[4] = -points[2];
-        points[5] = -points[1];
-        points[6] = -points[0];
+        fprintf(stderr, "setGaussPoints: gauss_k don't know\n");
     }
 
     return points;
@@ -52,7 +50,7 @@ vector<T> setGaussPoints(index gauss_k)
 // gauss weights
 vector<T> setGaussWeights(index gauss_k)
 {
-    vector<T> weights(gauss_k, 0);
+    vector<T> weights(gauss_1d_len(gauss_k), 0);
     if (gauss_k == 1) {
         weights[0] = 2;
     }
@@ -82,14 +80,7 @@ vector<T> setGaussWeights(index gauss_k)
         weights[6] = weights[0];
     }
     else {
-        fprintf(stderr, "setGaussWeights: gauss_k don't know, reset gauss_k = 7\n");
-        weights[0] = 0.1294849661688690;
-        weights[1] = 0.2797053914892760;
-        weights[2] = 0.3818300505051180;
-        weights[3] = 0.4179591836734690;
-        weights[4] = weights[2];
-        weights[5] = weights[1];
-        weights[6] = weights[0];
+        fprintf(stderr, "setGaussWeights: gauss_k don't know\n");
     }
 
 
