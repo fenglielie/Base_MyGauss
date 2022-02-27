@@ -1,5 +1,7 @@
 #include "Gauss.h"
 
+// 这里如果gauss_k 超过1d允许的范围，则改为7处理
+
 vector<T> setGaussWeights_2d(index gauss_k)
 {
     vector<T> v(gauss_k*gauss_k,0);
